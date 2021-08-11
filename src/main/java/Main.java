@@ -16,8 +16,8 @@ public class Main{
         WebDriver driver = new ChromeDriver();
         driver.get("https://www.aac.ac.il/");
         driver.manage().window().maximize();
-        Thread.sleep(1000);
-        WebElement personalInfo = driver.findElement(By.xpath("/html/body/div[2]/header/div[1]/div[1]/div/nav/ul/li[7]/a"));
+        Thread.sleep(2000);
+        WebElement personalInfo = driver.findElement(By.cssSelector("a[href=\"https://portal.aac.ac.il\"]"));
         personalInfo.click();
         System.out.println("Please enter your UserName and Password");
         userName = s.next();
@@ -26,10 +26,14 @@ public class Main{
         userId.sendKeys(userName);
         WebElement userPassword = driver.findElement(By.id("Ecom_Password"));
         userPassword.sendKeys(password);
-        WebElement Enter = driver.findElement(By.xpath("/html/body/div[1]/div/div[2]/div[1]/form/p[2]/input"));
+        WebElement Enter = driver.findElement(By.className("submit"));
         Enter.click();
-        WebElement enterMoodle = driver.findElement(By.xpath("/html/body/div[1]/div/div[3]/div[1]/div/div/div[4]/div[1]/a"));
+        WebElement enterMoodle = driver.findElement(By.cssSelector("a[href=\"https://moodle.aac.ac.il/login/index.php\"]"));
         enterMoodle.click();
+        WebElement dropDown = driver.findElement(By.id("displaydropdown"));
+        dropDown.click();
+        WebElement courseFormat = driver.findElement(By.linkText("תקציר הקורס"));
+        courseFormat.click();
         Thread.sleep(3000);
 
         List<WebElement> webElements = driver.findElements(new By.ByTagName("h6"));
